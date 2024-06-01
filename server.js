@@ -7,7 +7,7 @@ let socket = require("socket.io");
 let io = socket(server, {
   //this allows external websites to connect
   cors: {
-    origin: "https://example.com",
+    origin: true,
     methods: ["GET", "POST"],
   },
   //this allows older socket versions to connect
