@@ -46,7 +46,8 @@ socket.on("enterAccepted", (count) => {
 let timerStarted = false;
 let interval;
 
-let maxTime = 420000;
+// let maxTime = 420000;
+let maxTime = 10000;
 
 function msToTime(duration) {
   var seconds = parseInt((duration / 1000) % 60),
