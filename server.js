@@ -8,7 +8,6 @@ let io = socket(server, {
   //this allows external websites to connect
   cors: {
     origin: true,
-    methods: ["GET", "POST"],
   },
   //this allows older socket versions to connect
   allowEIO3: true,

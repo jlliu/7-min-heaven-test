@@ -18,8 +18,6 @@ let body = document.querySelector("body");
 let heavenMessage = document.querySelector(".message");
 let timer = document.querySelector("#timer");
 
-// let otherEnteredEvent = new Event("otherEnteredEvent");
-
 doorButton.addEventListener("click", function () {
   //decide to enter
   socket.emit("attemptEnter");
@@ -48,9 +46,7 @@ socket.on("enterAccepted", (count) => {
 let timerStarted = false;
 let interval;
 
-//7 min
-//let maxTime = 420000;
-let maxTime = 10000;
+let maxTime = 420000;
 
 function msToTime(duration) {
   var seconds = parseInt((duration / 1000) % 60),
@@ -71,7 +67,6 @@ socket.on("count", (count) => {
       othercursor.style.display = "block";
       heavenMessage.innerHTML = "someone is here with you";
       if (!timerStarted) {
-        // document.dispatchEvent(otherEnteredEvent);
         timerStarted = true;
         let startTime = new Date().getTime();
         interval = setInterval(function () {
@@ -103,11 +98,13 @@ socket.on("count", (count) => {
     heavenDiv.style.visibility = "hidden";
     // update UI of waiting room
     if (count >= 2) {
-      door.src = "door-close.png";
+      door.src =
+        "https://cdn.glitch.global/b817d0f1-eb72-49b6-a5d0-8455c5e5bf21/door-close.png?v=1710370277153";
       doorButton.innerHTML = "heaven is occupied";
       doorButton.setAttribute("disabled", true);
     } else {
-      door.src = "door-open.png";
+      door.src =
+        "https://cdn.glitch.global/b817d0f1-eb72-49b6-a5d0-8455c5e5bf21/door-open.png?v=1710370277313";
       doorButton.innerHTML = "enter heaven";
       doorButton.removeAttribute("disabled");
     }
@@ -130,7 +127,8 @@ document.addEventListener("mousemove", function (e) {
 // setup clouds
 for (var i = 0; i < 8; i++) {
   let cloud = document.createElement("img");
-  cloud.src = "cloud.png";
+  cloud.src =
+    "https://cdn.glitch.global/b817d0f1-eb72-49b6-a5d0-8455c5e5bf21/cloud.png?v=1712885202739";
   cloud.classList.add("cloud");
   cloud.style.left = "0px";
   if (i == 7) {
@@ -158,23 +156,3 @@ for (var i = 0; i < 8; i++) {
   );
   heavenDiv.appendChild(cloud);
 }
-
-// // Reset after 10 minutes
-// let resetTime = 600;
-
-// function setIdle(cb, seconds) {
-//   var timer;
-//   var interval = seconds * 1000;
-//   function refresh() {
-//     clearInterval(timer);
-//     timer = setTimeout(cb, interval);
-//   }
-//   ["keypress", "click", "mousemove", "otherEnteredEvent"].forEach((event) =>
-//     document.addEventListener(event, refresh)
-//   );
-//   refresh();
-// }
-
-// setIdle(function () {
-//   location.href = "/";
-// }, resetTime);
